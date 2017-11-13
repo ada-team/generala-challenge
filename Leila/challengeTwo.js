@@ -51,7 +51,7 @@ function buscarCoincidencias(arr){
   }
   
     if (contadorCoincidencia > 0) {
-      console.log('El numero ' + primerCoincidencia + ' se repite ' + contadorCoincidencia + ' veces. Esto te da ' + puntosUno + ' puntos.');
+      console.log(`El numero ${primerCoincidencia} se repite ${contadorCoincidencia} veces. Esto te da ${puntosUno} puntos.`);
     }else{
       console.log('No hay concidencias, fracasado.');
     }
@@ -72,7 +72,7 @@ function buscarCoincidencias(arr){
       }
     }
       if (contadorSegundaCoincidencia > 0) {
-        console.log('Tambien se repite el numero ' + segundaCoincidencia + ',' + contadorSegundaCoincidencia + ' veces. Esto te da ' + puntosDos + ' puntos.');
+        console.log(`Tambien se repite el numero ${segundaCoincidencia}, ${contadorSegundaCoincidencia} veces. Esto te da ${puntosDos} puntos.`);
       }else{
         console.log('No hay mas concidencias, fracasado.');
       }
@@ -89,7 +89,8 @@ function jugar(){
   }
 
   puntajeRonda = puntosUno + puntosDos;
-  console.log('Los puntos de esta ronda son: ' + puntajeRonda);
+  console.log(`Los puntos de esta ronda son: ${puntajeRonda}`);
+
 
     if (puntajeRonda > puntajeMayor) {
       puntajeMayor = puntajeRonda;
@@ -98,13 +99,11 @@ function jugar(){
 
 function jugarVeinteVeces(){
   for (var n = 1; n <= 20; n++) {
-    console.log('---------------------------------------------------------------');
-    console.log(`Round: ${n}`);
+    console.log('---------------------------------------------');
+    console.log('Round: ' + n);
     jugar();
   }
   console.log(`El puntaje mayor es de ${puntajeMayor}`);
 }
-
-
 
 jugarVeinteVeces();
