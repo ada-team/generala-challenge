@@ -1,0 +1,18 @@
+#contenedor{
+	display: flex;
+	flex-flow: wrap row;
+}
+
+.caja{
+	width: 49%;
+	text-align: center;
+	border: 2px dashed #53196D;
+}
+
+#gana {
+	margin: 5% 43%;
+}
+
+li {
+	list-style-type: decimal;
+}
