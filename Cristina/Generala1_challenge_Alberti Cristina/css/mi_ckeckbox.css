@@ -1,0 +1,43 @@
+
+
+.checkeable input {
+            display: none;
+            }
+
+.checkeable img {
+            width: 100px;
+            border: 5px solid transparent;
+           }
+
+.checkeable input {
+            display: none;
+            }
+
+.checkeable input:checked  + img {
+            border-color: blue;
+            }
+
+
+#margen     {
+margin: 20px;
+padding: 0;
+border-width: 0;
+}
+
+.contenedor-tabla{
+
+display: table;
+
+}
+
+.contenedor-fila{
+
+display: table-row;
+
+}
+
+.contenedor-columna{
+
+display: table-cell;
+
+}
