@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Generala</title>
+    <link rel="stylesheet" type="text/css" href="css/mi_ckeckbox.css">
+    
+    
+  </head>
+  <body>
+    <div id="margen" >
+      <!-- Pongo como imagen un cubilete para iniciar el juego. Imagen identificada com "cubilete". Con onClick llamo la funcion que inicia el juego -->
+      <p align="center"> <img src= "img/cubilete.jpg" width="100%" height="100%" id="cubilete" onclick="InicioJuego()">  </p>
+      <center>
+      <label class="checkeable">
+        <input type="checkbox" id="dado1" checked/>
+        <img src="img/uno.jpg" id="img1"/>
+      </label>
+      <label class="checkeable">
+        <input type="checkbox" id="dado2" checked/>
+        <img src="img/dos.jpg" id="img2"/>
+      </label>
+      <label class="checkeable">
+        <input type="checkbox" id="dado3" checked/>
+        <img src="img/tres.jpg" id="img3"/>
+      </label>
+      <label class="checkeable">
+        <input type="checkbox" id="dado4" checked/>
+        <img src="img/cuatro.jpg" id="img4"/>
+      </label>
+      <label class="checkeable">
+        <input type="checkbox" id="dado5" checked/>
+        <img src="img/cinco.jpg" id="img5"/>
+      </label>
+      </center>
+    </div>
+    <div id="margen">
+      <center>
+      <button id="btnTiro" onclick="tirada()">Seleccione dados, presione para tirar</button>
+      </center>
+    </div>
+    <center>
+    <div class="contenedor-tabla">
+      <div class="contenedor-fila">
+        <div class="contenedor-columna">
+          <div id="margen">
+            <center>
+            <table border="1">
+              
+              <tr><th></th></td><td></td><td></td><td></td><td></td><td></td><th>Puntaje</th></tr>
+              <tr><td>1</td><td><input type="radio" name="uno" onclick="validar('uno',1)">1</td><td><input type="radio" name="uno" onclick="validar('uno',2)"">2</td><td><input type="radio" name="uno" onclick="validar('uno',3)"">3</td><td><input type="radio" name="uno" onclick="validar('uno',4)">4</td><td><input type="radio" name="uno" onclick="validar('uno',5)">5</td><td id="uno"></td></tr>
+              <tr><td>2</td><td><input type="radio" name="dos" onclick="validar('dos',2)">2</td><td><input  type="radio"  name="dos" onclick="validar('dos',4)">4</td><td><input type="radio" name="dos" onclick="validar('dos',6)">6</td><td><input type="radio" name="dos" onclick="validar('dos',8)">8</td><td><input type="radio" name="dos" onclick="validar('dos',10)">10</td><td id="dos"></td></tr>
+              <tr><td>3</td><td><input type="radio" name="tres" onclick="validar('tres',3)">3</td><td><input name="tres" type="radio" onclick="validar('tres',6)">6</td><td><input type="radio" name="tres" onclick="validar('tres',9)">9</td><td><input type="radio" name="tres" onclick="validar('tres',12)">12</td><td><input type="radio" name="tres" onclick="validar('tres',15)">15</td><td id="tres"></td></tr>
+              <tr><td>4</td><td><input type="radio" name="cuatro" onclick="validar('cuatro',4)">4</td><td><input type="radio" name="cuatro" onclick="validar('cuatro',8)">8</td><td><input type="radio" name="cuatro" onclick="validar('cuatro',12)">12</td><td><input type="radio" name="cuatro" onclick="validar('cuatro',16)">16</td><td><input type="radio" name="cuatro" onclick="validar('cuatro',20)">20</td><td id="cuatro"></td></tr>
+              <tr><td>5</td><td><input type="radio" name="cinco" onclick="validar('cinco',5)">5</td><td><input type="radio" name="cinco" onclick="validar('cinco',10)">10</td><td><input type="radio" name="cinco" onclick="validar('cinco',15)">15</td><td><input name="cinco" type="radio" onclick="validar('cinco',20)">20</td><td><input name="cinco" type="radio" onclick="validar('cinco',25)">25</td><td id="cinco"></td></tr>
+              <tr><td>6</td><td><input type="radio" name="seis" onclick="validar('seir',6)">6</td><td><input name="seis" type="radio" onclick="validar('seis',12)">12</td><td><input name="seis" type="radio" onclick="validar('seis',18)">18</td><td><input type="radio" name="seis" onclick="validar('seis',24)">24</td><td><input name="seis" type="radio" onclick="validar('seis',30)">30</td><td id="seis"></td></tr>
+              <tr><td>Escalera</td><td><input type="radio" name="escalera" onclick="validar('escalera',20)" >20</td><td><input type="radio" name="escalera" onclick="validar('escalera',25)">25</td><td></td><td></td><td></td><td id='escalera'></td></tr>
+              <tr><td>Full</td><td><input name="full" type="radio" onclick="validar('full',30)">30</td><td><input type="radio" name="full"  onclick="validar('full',35)">35</td><td></td><td></td><td></td><td id='full'></td></tr>
+              <tr><td>Poker</td><td><input type="radio" name="poker" onclick="validar('poker',40)">40</td><td><input type="radio"  name="poker" onclick="validar('poker',45)">45</td></td><td></td><td></td><td></td><td id="poker"></td></tr>
+              <tr><td>Generala</td><td><input type="radio" name="generala" onclick="validar('generala',50)">50</td><td><input type="radio" name="generala"  onclick="validar('generala',55)">55</td><td></td><td></td><td></td><td id='generala'></td></tr>
+            </table>
+            </center>
+          </div>
+        </div>
+        <div class="contenedor-columna">
+          
+          <ul id="lista">
+          </ul>
+        </div>
+      </div>
+    </div>
+    </center>
+    <div id="margen">
+      <center>
+      <form action="">
+        <label for="totalPuntos">Total Puntos</label>
+        <input name="totalPuntos" id="totalPuntos" onclick="validar('totalP)" id="totalPuntos">
+      </form>
+      </center>
+    </div>
+
+    <script type="text/javascript" src="javascript/javascript.js"></script>
+  </body>
+</html>
