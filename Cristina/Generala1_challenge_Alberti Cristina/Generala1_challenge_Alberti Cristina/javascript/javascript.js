@@ -15,7 +15,7 @@ var newImg;
 var newChk;
 var chkID;
 var lista;
-var nroRadioButton;
+//var nroRadioButton;
 var newLabel;
 var newRadio;
 var newRadioValue;
@@ -24,41 +24,52 @@ var newRadioID;
 var nChkButton;
 var ButtonTirada;
 var lGenerala;
+var valor;
+var totalP;
+var tbchar;
+var nptos;
+var max;
 
-function validar(tbID, tdVal) {
-  document.getElementById(tbID).innerHTML=tdVal.toString();
-  var totalP = 0;
-  totalP = totalP + parseInt(document.getElementById("uno").innerText);
-  totalP = totalP + parseInt(document.getElementById("dos").innerText);
-  totalP = totalP + parseInt(document.getElementById("tres").innerText);
-  totalP = totalP + parseInt(document.getElementById("cuatro").innerText);
-  totalP = totalP + parseInt(document.getElementById("cinco").innerText);
-  totalP = totalP + parseInt(document.getElementById("seis").innerText);
-  totalP = totalP + parseInt(document.getElementById("escalera").innerText);
-  totalP = totalP + parseInt(document.getElementById("full").innerText);
-  totalP = totalP + parseInt(document.getElementById("poker").innerText);
-  totalP = totalP + parseInt(document.getElementById("generala").innerText);
 
-  document.getElementByID("totalPuntos").innerHTML = totalP.toString();
+
+
+function validar(tbID, tdVal) {//busca el maximo y borra la lista del puntaje en c/jugada
   
+  
+  document.getElementById(tbID).innerHTML = tdVal.toString();
+
+  
+  if (tdVal > max) {
+    max = tdVal;
+  }
+    
+  tbchar = max.toString();
+  document.getElementById("totalPuntos").value = max;
+
+  lista = document.getElementById('lista');
+
+
+  l = lista.hasChildNodes();
+
+  while (l){
+    lista.removeChild(lista.childNodes[0]);
+     l = lista.hasChildNodes();
+
+  }
+  
+
+  
+  tirarDados(); 
+
 }
 
-function createRadioButton() {
+function createRadioButton() {//crear un lista y me muestra el puntaje obtenido
 
-   nroRadioButton++;
    
    lista = document.getElementById("lista"); 
    
-   newLabel = document.createElement("label");
-   newRadio = document.createElement("input");
-   newRadio.setAttribute("type", "radio");
-   newRadio.setAttribute("name", "radio");
-   newRadio.value = newRadioValue;
-   newRadioID = "radio" + nroRadioButton.toString();
-   newRadio.id = newRadioID;
-   newLabel.appendChild(newRadio);
-   newLabel.appendChild(document.createTextNode(newRadioText));
-
+   newLabel = document.createElement("li");
+   newLabel.innerHTML = newRadioText;
    lista.appendChild(newLabel);
 
    }
@@ -71,9 +82,9 @@ function cambiar() {
    }
 
 
-function puntos() {
+function puntos() {//Crea 2 arrays  1 con la cantidad de veces q salio cada/numero y en otro lo ordena
 
-   nroRadioButton = 0;
+
 
    vezCadaNro = [0,0,0,0,0,0];
 
@@ -123,7 +134,19 @@ function puntos() {
    }
 
  
-   if (vezOrdenado[1] == 1 && vezOrdenado[2] == 1 && vezOrdenado[3] == 1 && vezOrdenado[4] == 1 && vezOrdenado[5] == 1) {
+   if (vezCadaNro[0] == 1 && vezCadaNro[1] == 1 && vezCadaNro[2] == 1 && vezCadaNro[3] == 1 && vezCadaNro[4] == 1) {
+
+      if (nChkButton == 5) {
+         newRadioValue = "E-25";
+         newRadioText  = "Escalera servida";
+      } else {
+        newRadioValue = "E-20";
+        newRadioText  = "Escalera";
+      }
+      createRadioButton();
+
+   }
+    if (vezCadaNro[5] == 1 && vezCadaNro[1] == 1 && vezCadaNro[2] == 1 && vezCadaNro[3] == 1 && vezCadaNro[4] == 1) {
 
       if (nChkButton == 5) {
          newRadioValue = "E-25";
@@ -136,7 +159,7 @@ function puntos() {
 
    }
 
-   if ( nroTirada == 3 ) {
+   
       for (l=0;l<6; l++) {   
          lmas1 = l + 1;
          if ( vezCadaNro[l] > 0) {
@@ -147,28 +170,22 @@ function puntos() {
          }
       }
 
-   }
-
-   if ( nroRadioButton >  0 ) {
-
-      
-
-   }
 
 }
 
 
-function tirarDados(){
+function tirarDados(){ //  2 - tiro los dados generando un numero aleatorio con maximo 20 tiradas
+
+  if (nroTirada==20){
+    alert("fin");
+} else {
+     nroTirada++;
+     console.log(nroTirada);
+}
    
       for ( j=1; j<6; j++ ) {
   
-         chkID  = "dado" + j.toString();
-         newChk = document.getElementById(chkID);
-         nChkButton = 0
-       
-         if (newChk.checked ){
 
-            nChkButton++
             nroGenerado = Math.floor(Math.random()* 6 ) + 1;
             listaDados[j-1] = nroGenerado;
             imgID = "img" + j.toString() ;
@@ -193,50 +210,28 @@ function tirarDados(){
                      newImg = "img/seis.jpg";
              }
              
-            cambiar();
-            newChk.checked = false;
-
-         } 
+            cambiar(); //cambia la imagen segun el numero obtenido aleatoriamente
 
       }
  
       puntos();
       
-      if ( nroRadioButton > 0 ) {
-          buttonTirada.disabled = true;
-          
-          document.getElementById("radio1").focus()
-      } else {
-          buttonTirada.disabled = false;
-          document.getElementById("btnTiro").focus()
-      }
-
-
-}
-
-function tirada(){
-
-tirarDados();
-
-if (nroTirada==3){
-   nroTirada=1;
-} else {
-   nroTirada++;
-}
-
 }
 
 
-function InicioJuego() {
+
+function InicioJuego() { //1 - inicio juego, elimino la imagen y voy a la funcion tirar dados
+
             
+         max = 0;
+
          imagen = document.getElementById("cubilete");	
          padre = imagen.parentNode;
          padre.removeChild(imagen);
          
-         nroTirada = 1;
-         buttonTirada = document.getElementById("btnTiro");
-         
-         tirada();
+         nroTirada = 0;
+          
+         tirarDados();
 
          }
   
