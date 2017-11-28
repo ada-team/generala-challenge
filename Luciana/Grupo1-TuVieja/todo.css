@@ -1,0 +1,20 @@
+
+body{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#list{
+    display: inline;
+    text-decoration: none;
+}
+
+input.checkbox{
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.removeBtn{
+    background-color:red;
+    color:white;
+}
